@@ -52,7 +52,7 @@ static NSString *const OAuthRedirectURI =
 
 #warning This value must match the org instance with which you're testing 
 static NSString *const OAuthLoginDomain =  
-@"test.salesforce.com"; //Sandbox:  use login.salesforce.com if you're sure you want to test with Production
+@"login.salesforce.com"; //Sandbox:  use login.salesforce.com if you're sure you want to test with Production
 
 
 @interface AppDelegate (private)
@@ -95,7 +95,7 @@ static NSString *const OAuthLoginDomain =
     SFOAuthCredentials *creds = me.coordinator.credentials;
     NSString *instanceHost = [creds.instanceUrl host];
     //Our custom apex/visualforce start page
-    NSString *startPageString = [NSString stringWithFormat:@"https://%@/apex/BasicVFPage",instanceHost ]; 
+    NSString *startPageString = [NSString stringWithFormat:@"https://%@/m",instanceHost ]; 
     
     NSLog(@"startPageString value: %@", startPageString);
     return startPageString;
@@ -253,7 +253,7 @@ static NSString *const OAuthLoginDomain =
         //if you wish to use the REST API with eg forcetk.js, you can also
         //mix and match the visualforce scope with the "api" scope: 
         //coordinator.scopes = [NSSet setWithObjects:@"visualforce","api",nil] ; 
-        coordinator.scopes = [NSSet setWithObjects:@"visualforce",nil] ; 
+        coordinator.scopes = [NSSet setWithObjects:@"web",@"api",nil] ; 
         
         self.coordinator = coordinator;
         self.coordinator.delegate = self;
